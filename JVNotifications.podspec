@@ -17,10 +17,10 @@ s.requires_arc = true
 s.dependency 'RealmSwift'
 
 s.source_files = "JVNotifications/**/*"
-s.resources = "JVNotifications/**/*.{png, mp3, mp4, m4a}"
-s.resource_bundles = {
-    'JVNotificationBunble' => [
-        "JVNotifications/**/*.{png}", "JVNotifications/**/*.{m4a}", "JVNotifications/**/*.{mp3}", "JVNotifications/**/*.{mp4}"
-    ]
-}
+#s.resources = "JVNotifications/**/*.{png, mp3, mp4, m4a}"
+#s.resource_bundles = {
+#    'JVNotificationBunble' => [
+#        "JVNotifications/**/*.{png}", "JVNotifications/**/*.{m4a}", "JVNotifications/**/*.{mp3}", "JVNotifications/**/*.{mp4}"
+#    ]
+#}
 end
