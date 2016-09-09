@@ -78,11 +78,18 @@ public class JVNotificationManager {
             let notification = UILocalNotification()
             notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
             notification.alertTitle = theNotification.title
-            if theNotification.title != nil && theNotification.explination != nil {
-                notification.alertBody = theNotification.title! + " - " + theNotification.explination!
-            }else{
-                notification.alertBody = theNotification.explination
+            
+            if let t = theNotification.title, let e = theNotification.explination {
+                theNotification.coalescedTitle = t + " - " + e
             }
+            
+            
+            if theNotification.coalescedTitle == nil {
+                notification.alertBody = theNotification.title
+            }else{
+                notification.alertBody = theNotification.coalescedTitle
+            }
+
             UIApplication.sharedApplication().presentLocalNotificationNow(notification)
             theNotification.dateFired = NSDate()
             do{

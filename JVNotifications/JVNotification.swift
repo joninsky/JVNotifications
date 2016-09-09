@@ -15,6 +15,7 @@ public class JVNotification: Object {
     //MARK: Properties
     public dynamic var title: String?
     public dynamic var explination: String?
+    public internal(set) dynamic var coalescedTitle: String?
     public dynamic var image: String?
     public dynamic var subImage: String?
     public internal(set) dynamic var dateFired: NSDate!
