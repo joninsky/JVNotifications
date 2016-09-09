@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "JVNotifications"
-s.version          = "0.1.0"
+s.version          = "0.1.1"
 s.summary          = "Facebook style notification persistence"
 s.description      = <<-DESC
 This will allow you to manage notifications and persist them using Realm
