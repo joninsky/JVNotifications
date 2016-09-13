@@ -393,6 +393,7 @@
 				C3AA22221D7F5549008B6DD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3AA22231D7F5549008B6DD3 /* Build configuration list for PBXNativeTarget "JVNotificationsTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +402,7 @@
 				C3AA22251D7F5549008B6DD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
