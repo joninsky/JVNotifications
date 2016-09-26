@@ -157,6 +157,7 @@
 				TargetAttributes = {
 					C3AA220B1D7F5549008B6DD3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0810;
 					};
 					C3AA22151D7F5549008B6DD3 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -330,10 +331,11 @@
 				INFOPLIST_FILE = JVNotifications/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PB.JVNotifications;
+				PRODUCT_BUNDLE_IDENTIFIER = pebblebee.JVNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -348,9 +350,10 @@
 				INFOPLIST_FILE = JVNotifications/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PB.JVNotifications;
+				PRODUCT_BUNDLE_IDENTIFIER = pebblebee.JVNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

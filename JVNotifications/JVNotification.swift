@@ -10,17 +10,17 @@ import UIKit
 import RealmSwift
 
 
-public class JVNotification: Object {
+open class JVNotification: Object {
     
     //MARK: Properties
-    public dynamic var title: String?
-    public dynamic var explination: String?
-    public internal(set) dynamic var coalescedTitle: String?
-    public dynamic var image: String?
-    public dynamic var subImage: String?
-    public internal(set) dynamic var dateFired: NSDate!
-    public dynamic var debug = false
-    public dynamic var seen = false
+    open dynamic var title: String?
+    open dynamic var explination: String?
+    open internal(set) dynamic var coalescedTitle: String?
+    open dynamic var image: String?
+    open dynamic var subImage: String?
+    open internal(set) dynamic var dateFired: Date!
+    open dynamic var debug = false
+    open dynamic var seen = false
     
     public convenience init(title t: String, explination e: String, imageName i: String, subImageName s: String) {
         self.init()
@@ -33,17 +33,17 @@ public class JVNotification: Object {
     
     
     //MARK: Functions
-    public func delete() throws {
+    open func delete() throws {
         do{
             try Realm().write {
-                try Realm().delete(self)
+                try! Realm().delete(self)
             }
         }catch{
             throw error
         }
     }
     
-    public func markAsSeen() throws {
+    open func markAsSeen() throws {
         do{
             try Realm().write{
                 self.seen = true

@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class Badger: UILabel {
+open class Badger: UILabel {
     
     
-    public var badgeValue: String = "" {
+    open var badgeValue: String = "" {
         willSet(newValue){
             
         }
@@ -19,33 +19,33 @@ public class Badger: UILabel {
         didSet{
             self.text = badgeValue
             if self.badgeValue.isEmpty || self.badgeValue == "0"{
-                self.hidden = true
+                self.isHidden = true
             }else{
-                self.hidden = false
+                self.isHidden = false
             }
         }
     }
     
     public init(badgeColor color: UIColor?, textColor: UIColor?, viewToBadge view: UIView, initialValue value: String?) {
-        super.init(frame: CGRectMake(0, 0, 25, 25))
+        super.init(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         
         
         
         if color == nil {
-            self.backgroundColor = UIColor.redColor()
+            self.backgroundColor = UIColor.red
         }else {
             self.backgroundColor = color
         }
         
         if textColor == nil {
-            self.textColor = UIColor.whiteColor()
+            self.textColor = UIColor.white
         }else{
             self.textColor = textColor
         }
         
         self.adjustsFontSizeToFitWidth = true
-        self.textAlignment = NSTextAlignment.Center
-        self.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        self.textAlignment = NSTextAlignment.center
+        self.lineBreakMode = NSLineBreakMode.byWordWrapping
         self.numberOfLines = 0
         self.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(self)
@@ -59,10 +59,10 @@ public class Badger: UILabel {
             self.badgeValue = value!
             self.text = value
             if self.text!.isEmpty == true || self.badgeValue == "0"{
-                self.hidden = true
+                self.isHidden = true
             }
         }else{
-            self.hidden = true
+            self.isHidden = true
         }
         
         
@@ -72,20 +72,20 @@ public class Badger: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func constrain(superView: UIView) {
+    fileprivate func constrain(_ superView: UIView) {
         
         var arrayOfConstraints = [NSLayoutConstraint]()
         
-        let verticalConstraint = NSLayoutConstraint(item: superView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
+        let verticalConstraint = NSLayoutConstraint(item: superView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0)
         
-        let horizontalConstraint = NSLayoutConstraint(item: superView, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: superView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0)
         
-        let widthConstraint = NSLayoutConstraint.constraintsWithVisualFormat("H:[me(>=25)]", options: [], metrics: nil, views: ["me": self])
+        let widthConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:[me(>=25)]", options: [], metrics: nil, views: ["me": self])
         
-        let heighConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:[me(>=25)]", options: [], metrics: nil, views: ["me":self])
+        let heighConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[me(>=25)]", options: [], metrics: nil, views: ["me":self])
         
-        arrayOfConstraints.appendContentsOf(widthConstraint)
-        arrayOfConstraints.appendContentsOf(heighConstraint)
+        arrayOfConstraints.append(contentsOf: widthConstraint)
+        arrayOfConstraints.append(contentsOf: heighConstraint)
         arrayOfConstraints.append(verticalConstraint)
         arrayOfConstraints.append(horizontalConstraint)
         

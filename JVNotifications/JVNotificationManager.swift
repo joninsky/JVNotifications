@@ -14,20 +14,20 @@ import RealmSwift
 
 internal let debugKey = "Debug"
 
-public class JVNotificationManager {
+open class JVNotificationManager {
     //MARK: Properties
     
-    static public let sharedInstance = JVNotificationManager()
+    static open let sharedInstance = JVNotificationManager()
     
     //Variable to determine if we should fire debug notifications or not
-    public var fireDebugNotifications = NSUserDefaults.standardUserDefaults().boolForKey(debugKey) {
+    open var fireDebugNotifications = UserDefaults.standard.bool(forKey: debugKey) {
         didSet {
-            NSUserDefaults.standardUserDefaults().setBool(self.fireDebugNotifications, forKey: debugKey)
+            UserDefaults.standard.set(self.fireDebugNotifications, forKey: debugKey)
         }
     }
     
     //MARK: Init
-    private init() {
+    fileprivate init() {
 
         
         
@@ -37,46 +37,46 @@ public class JVNotificationManager {
     
     //MARK: Class Functions
     
-    public func quickAlert(title: String, message: String?, viewThatWillPresentAlert view: UIViewController, presentationStyle style: UIAlertControllerStyle) {
+    open func quickAlert(_ title: String, message: String?, viewThatWillPresentAlert view: UIViewController, presentationStyle style: UIAlertControllerStyle) {
         //Create the alertController
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         //Create the OK Action
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
         //Add the action to the controller
         alertController.addAction(okAction)
         //Present the alert controller
-        view.presentViewController(alertController, animated: true, completion: nil)
+        view.present(alertController, animated: true, completion: nil)
     }
     
     
-    public func checkRegistration(types: UIUserNotificationType) -> Bool {
+    open func checkRegistration(_ types: UIUserNotificationType) -> Bool {
         
-        let notificaitonSettigs = UIUserNotificationSettings(forTypes: types, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificaitonSettigs)
+        let notificaitonSettigs = UIUserNotificationSettings(types: types, categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificaitonSettigs)
         return true
         
     }
     
-    public func deleteAllNotifications() throws {
+    open func deleteAllNotifications() throws {
         try Realm().write {
-            try Realm().delete(Realm().objects(JVNotification.self))
+            try! Realm().delete(Realm().objects(JVNotification.self))
         }
     }
     
     
-    public func getAllNotifications() -> [JVNotification] {
+    open func getAllNotifications() -> [JVNotification] {
         
         do {
-            return Array(try Realm().objects(JVNotification.self).sorted("dateFired", ascending: false))
+            return Array(try Realm().objects(JVNotification.self).sorted(byProperty: "dateFired", ascending: false))
         }catch{
             return [JVNotification]()
         }
     }
     
-    public func fireNotification(theNotification: JVNotification) {
+    open func fireNotification(_ theNotification: JVNotification) {
         if self.fireDebugNotifications == theNotification.debug {
             let notification = UILocalNotification()
-            notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
+            notification.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber
             notification.alertTitle = theNotification.title
             
             if let t = theNotification.title, let e = theNotification.explination {
@@ -90,11 +90,11 @@ public class JVNotificationManager {
                 notification.alertBody = theNotification.coalescedTitle
             }
 
-            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-            theNotification.dateFired = NSDate()
+            UIApplication.shared.presentLocalNotificationNow(notification)
+            theNotification.dateFired = Date()
             do{
                 try Realm().write{
-                    try Realm().add(theNotification)
+                    try! Realm().add(theNotification)
                 }
             }catch{
                 
