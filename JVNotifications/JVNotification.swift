@@ -21,6 +21,7 @@ open class JVNotification: Object {
     open internal(set) dynamic var dateFired: Date!
     open dynamic var debug = false
     open dynamic var seen = false
+    public dynamic var generatedFromRemote = false
     
     public convenience init(title t: String, explination e: String, imageName i: String, subImageName s: String) {
         self.init()

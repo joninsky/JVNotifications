@@ -75,22 +75,24 @@ open class JVNotificationManager {
     
     open func fireNotification(_ theNotification: JVNotification) {
         if self.fireDebugNotifications == theNotification.debug {
-            let notification = UILocalNotification()
-            notification.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber
-            notification.alertTitle = theNotification.title
-            
-            if let t = theNotification.title, let e = theNotification.explination {
-                theNotification.coalescedTitle = t + " - " + e
-            }
-            
-            
-            if theNotification.coalescedTitle == nil {
-                notification.alertBody = theNotification.title
-            }else{
-                notification.alertBody = theNotification.coalescedTitle
-            }
+            if !theNotification.generatedFromRemote{
+                let notification = UILocalNotification()
+                notification.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber
+                notification.alertTitle = theNotification.title
+                
+                if let t = theNotification.title, let e = theNotification.explination {
+                    theNotification.coalescedTitle = t + " - " + e
+                }
+                
+                
+                if theNotification.coalescedTitle == nil {
+                    notification.alertBody = theNotification.title
+                }else{
+                    notification.alertBody = theNotification.coalescedTitle
+                }
 
-            UIApplication.shared.presentLocalNotificationNow(notification)
+                UIApplication.shared.presentLocalNotificationNow(notification)
+            }
             theNotification.dateFired = Date()
             do{
                 try Realm().write{
